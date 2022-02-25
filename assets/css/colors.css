@@ -1,0 +1,21 @@
+:root {
+  --text: #1A1A1A;
+  --text-link: #C66231;
+  --text-light: #9c9c9c;
+  --main-blue: #C66231;
+  --main-pink: #EF5DA8;
+  --main-third: #4671EB;
+  --bg-first: #d4eafe;
+  --bg-first-transparent:rgb(212, 234, 254, 0.40);
+  --bg-second: #fed4f2;
+  --bg-second-transparent: rgba(254, 212, 242, 0.35);
+  --bg-third: #d4dffe;
+  --bg-third-transparent:rgb(212, 223, 254, 0.40);
+  --light-gray: #fff6fc;
+  --bg-light-gray: #F5F5F5;
+  --color-placeholder: #828282;
+  --color-bg-input: #f0f0f0;
+  --color-border-input: #c1c1c1;
+  --theme-color: var(--bg-first);
+  --theme-text-color:var(--main-blue);
+}
