@@ -17,7 +17,7 @@ export default {
 
 <style>
 header {
-  padding: 2em;
+  padding: 2em 0;
   background: white;
   align-self: start;
 }

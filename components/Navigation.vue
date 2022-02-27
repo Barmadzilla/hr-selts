@@ -47,7 +47,7 @@ export default {
         //     { name: "Хочу стать Тьютором", to: "education" },
         //   ],
         // },
-        { name: "Astu liikmeks", to: "astu-liikmeks" },
+        { name: "Tule liikmeks", to: "tule-liikmeks" },
         // { name: 'Контакты', to: 'contacts' }
       ],
     };

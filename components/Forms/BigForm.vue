@@ -63,7 +63,7 @@
                             </div>
                             <div
                                 v-if="field.type === 'checkbox'"
-                                class="radio-container"
+                                class="checkbox-container"
                             >
                                 <div
                                     v-for="(item, m) in field.chose"
@@ -88,21 +88,47 @@
                                     }}</label>
                                 </div>
                             </div>
+                            <div v-if="field.type === 'info'">
+                                <!-- <p
+                                    v-for="(p, i) in field.content"
+                                    :key="i"
+                                    v-html="p"
+                                /> -->
+                                <p>
+                                    Olen läbi lugenud
+                                    <NuxtLink
+                                        to="/isikuandmete-tootlemise-pohimotted"
+                                        >isikuandmete töötlemise
+                                        põhimõtetes</NuxtLink
+                                    >
+                                    toodud informatsiooni ning täiel määral aru
+                                    saanud oma õigustest ja kohustustest
+                                    isikuandmete töötlemisel, annan Seltsile
+                                    nõusoleku põhimõtetes kirjeldatud viisil
+                                    isikuandmete töötlemiseks.
+                                </p>
+                                <p>
+                                    Kinnitan, et käesolev, minu poolt antud
+                                    nõusolek isikuandmete töötlemiseks on antud
+                                    vabatahtlikult. Selts ei ole minu suhtes
+                                    teostanud mingeid toiminguid sundimaks mind
+                                    nimetatud nõusolekut isikuandmete
+                                    töötlemiseks andma.
+                                </p>
+                            </div>
+                            <div
+                                v-if="field.type === 'separator'"
+                                class="separator"
+                            />
                         </div>
                     </div>
                 </div>
                 <div v-if="step === fields.length - 1 && toFill.length">
                     <div class="toFill">
-                        <h4>
-                            Перечисленные ниже поля обязательны для заполнения
-                        </h4>
+                        <h4>Loetletud väljad on täitmiseks kohustuslikud</h4>
                         <ul>
                             <li v-for="(item, i) in toFill" :key="i">
-                                {{
-                                    item.chose
-                                        ? item.chose[0]
-                                        : item.placeholder
-                                }}
+                                {{ toFillMessage(item) }}
                             </li>
                         </ul>
                     </div>
@@ -130,25 +156,28 @@
                         :disabled="!validate"
                         @click.prevent="submitForm"
                     >
-                        Отправить данные
+                        Saadan ära
                     </button>
                 </nav>
             </div>
         </div>
         <div v-else>
             <div v-if="error">
-                <p>
-                    К сожалению что-то пошло не так и ваша анкета не была
-                    отправлена
-                </p>
+                <p>Kahjuks midagi läks valesti ja ankeedi saatmine nurjus.</p>
             </div>
             <div v-else>
                 <div v-if="loading">
-                    <p>Загружаем анкету на сервер...</p>
+                    <p>Andmete laadimine...</p>
                 </div>
                 <div v-else>
-                    <h4>{{ allValues[0] }}</h4>
-                    <p>Ваша анкета успешно отправлена</p>
+                    <h4>{{ allValues[1] }}</h4>
+                    <p>
+                        Sinu liikmelisus on vastu võetud ja sind loetakse Eesti
+                        HR Seltsi liikmeks peale seda kui oled saanud
+                        seltsingust tervituskirja. Juhul kui sulle seda nädala
+                        jooksul ei laeku, palume ühendust võtta
+                        <a href="mailto:info@hrselts.ee">info@hrselts.ee</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -214,6 +243,17 @@ export default {
         },
     },
     methods: {
+        toFillMessage(item) {
+            if (item.chose) {
+                return item?.message
+                    ? item.message
+                    : item?.placeholder
+                    ? item.placeholder
+                    : item.label;
+            } else {
+                return item.placeholder;
+            }
+        },
         fieldValueIs(element) {
             if (typeof element.value === "object") {
                 return element.value[0];
@@ -234,10 +274,13 @@ export default {
             this.loading = true;
             const arr = this.allValues;
             arr.pop();
-            const result = await this.$axios.post("https://api.tutorhub.ru", {
-                sheet: this.sheet,
-                data: arr,
-            });
+            const result = await this.$axios.post(
+                "https://api.veresk.club/matikainen",
+                {
+                    sheet: "Leht1",
+                    data: arr,
+                }
+            );
             if ((await result) && result.data === "OK") {
                 this.submitted = true;
                 this.loading = false;
@@ -264,9 +307,9 @@ h2 {
 }
 
 form {
+    box-sizing: border-box;
     background: white;
     width: 100%;
-    max-width: 45rem;
     padding: 3rem;
     border-radius: 2rem;
 }
@@ -308,6 +351,7 @@ textarea {
     align-items: center;
     cursor: pointer;
     transition: all 200ms;
+    flex-shrink: 0;
 }
 .radio.active label {
     color: var(--theme-text-color);
@@ -353,13 +397,18 @@ nav.first {
     justify-content: flex-end;
 }
 label {
-    font-size: 1.4em;
-    padding-bottom: 1rem;
+    font-size: 1.8em;
+    padding-bottom: 2rem;
     display: inline-block;
 }
 .radio-container {
     display: flex;
     gap: 3em;
+}
+.checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3em;
 }
 .radio,
 .checkbox {
@@ -369,7 +418,7 @@ label {
 .radio label,
 .checkbox label {
     font-size: 1.6rem;
-    line-height: 1;
+    line-height: 1.3;
     color: gray;
     margin: 0;
     padding: 0;
@@ -429,5 +478,8 @@ ul {
 }
 .toFill li:last-child {
     margin: 0;
+}
+.separator {
+    height: 0;
 }
 </style>

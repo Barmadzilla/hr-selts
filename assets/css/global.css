@@ -2,7 +2,7 @@
 
 :root {
   --section-padding: 7.5em;
-  --container-padding: 5em;
+  --container-padding: 6rem;
   --space-between-p: 1.4em;
   --footer-padding: 4.5em 0;
   --header-padding: 4.5em 0 0;
@@ -24,6 +24,7 @@ strong {
   font-weight: bold;
   font-size: 1em;
 }
+a{ font-size: 1em;}
 p {
   font-size: 1.6em;
   margin-bottom: var(--space-between-p);
@@ -111,6 +112,14 @@ button {
   background: var(--main-blue);
   color: white;
 }
+.btn.black{
+  background: var(--text);
+  border-color: var(--text);
+}
+.btn.black:hover {
+  background: transparent;
+  color: var(--text);
+}
 a {
   transition: all 150ms;
   color: var(--text-link);
@@ -122,4 +131,12 @@ pre {
   font-family: "Courier", monospace;
   font-size: 1.2rem;
   color: gray;
+}
+@media (max-width: 480px) {
+  :root{
+    --container-padding: 4rem;
+  }
+  *{
+    font-size: 8px;
+  }
 }
