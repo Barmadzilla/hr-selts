@@ -3,21 +3,6 @@
         <div class="content">
             <h1>Eesti HR Selts</h1>
             <div>
-                <!-- <p>
-                    Eesti HR Selts kasvas välja Eesti personalijuhtide LinkedIni
-                    grupist, mis loodi kaks aastat tagasi ja on selle ajaga
-                    saanud väga populaarseks valdkonna huviliste hulgas.
-                </p>
-                <p>
-                    Eesti HR Seltsi põhiliseks eesmärgiks on koondada kokku
-                    Eesti personalijuhtimise valdkonna huvilised, toetada
-                    erialast võrgustamist ning valdkonna arengut.
-                </p>
-                <p>
-                    Selts soovib tuua uudset, värsket ja agiilsemat lähenemist
-                    personalijuhtimisse ja toetada järelkasvu.
-                </p> -->
-
                 <p>
                     Eesti aktiivsed personalijuhid asutasid 28. veebruaril Eesti
                     HR Seltsi, mis oma ligi 1400-liikmelise kogukonnaga
@@ -52,15 +37,14 @@
                 <p>
                     Seni on võrgustikuga korraldatud erinevaid kogukonnale
                     suunatud tegevusi nii virtuaalselt kui ka füüsiliste
-                    kohtumiste vormis. Seltsingu juhtgruppi kuuluvad tuntud
-                    Eesti personalijuhid Helo Tamme, Palmi Lindjärv, Gelly
-                    Mikko, Sirli Spelman ja Helen Pärli.
+                    kohtumiste vormis.
                 </p>
                 <p>
-                    Lisaks juhtgrupi liikmetele on Eesti HR Seltsi
-                    asutajaliikmeteks Marge Litvinova, Renita Käsper, Liina
-                    Hindremäe, Egle Saska, Berit Grossberg, Aleksander Daniel
-                    Matikainen, Jüri Saarma, Riina Einberg ja Hanno Ahonen.
+                    Seltsingu asutasid Eesti oma valdkonna tipptegijad: Helo
+                    Tamme, Palmi Lindjärv, Gelly Mikko, Sirli Spelman, Helen
+                    Pärli, Marge Litvinova, Renita Käsper, Liina Hindremäe, Egle
+                    Saska, Berit Grossberg, Aleksander Daniel Matikainen, Jüri
+                    Saarma, Riina Einberg ja Hanno Ahonen.
                 </p>
                 <p>
                     Eesti HR Seltsiga on oodatud liituma kõik
@@ -70,7 +54,6 @@
                     seonduv osaliselt kuulub või valdkonnana huvi pakub.
                     Seltsinguga liitumine ja liikmelisus on tasuta.
                 </p>
-
                 <img :src="require(`~/assets/images/hr-map.png`)" alt="" />
             </div>
         </div>

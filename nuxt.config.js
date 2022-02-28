@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Eesti Personalijuhid',
+    title: 'Eesti HR Selts',
     htmlAttrs: {
       lang: 'ee'
     },

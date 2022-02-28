@@ -3,7 +3,7 @@
         <div class="content">
             <h1>Eesti HR Seltsi liitumise avaldus</h1>
             <p>
-                Eesti Personalijuhtide Seltsinguga on oodatud liituma kõik
+                Eesti HR Seltsiga on oodatud liituma kõik
                 personalijuhtimisest huvituvad entusiastid: nii valdkonnas pikka
                 aega toimetanud kui ka alles esimesi samme astujad, aga ka need
                 kelle töökohustuste hulka personalitööga seonduv osaliselt
@@ -60,7 +60,7 @@ export default {
                         required: true,
                     },
                     {
-                        label: "Olen nõus saama HR Seltsilt teavet elektroonposti teel",
+                        label: "Olen nõus saama HR Seltsilt teavet e-posti teel",
                         message: "Nõusolek teave saamiseks",
                         type: "radio",
                         value: [],
