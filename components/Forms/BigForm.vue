@@ -42,11 +42,13 @@
                                 v-if="field.type === 'radio'"
                                 class="radio-container"
                             >
-                                <div
+                                <label
                                     v-for="(item, m) in field.chose"
                                     :key="m"
                                     class="radio"
-                                    :class="{ active: item === field.value }"
+                                    :class="{
+                                        active: item === field.value,
+                                    }"
                                 >
                                     <input
                                         :id="field.name + m"
@@ -56,10 +58,8 @@
                                         :type="field.type"
                                         :placeholder="item.placeholder"
                                     />
-                                    <label :for="field.name + m">{{
-                                        item
-                                    }}</label>
-                                </div>
+                                    {{ item }}
+                                </label>
                             </div>
                             <div
                                 v-if="field.type === 'checkbox'"
@@ -96,10 +96,15 @@
                                 /> -->
                                 <p>
                                     Olen läbi lugenud
-                                    <NuxtLink
+                                    <!-- <NuxtLink
                                         to="/isikuandmete-tootlemise-pohimotted"
                                         >isikuandmete töötlemise
                                         põhimõtetes</NuxtLink
+                                    > -->
+                                    <a
+                                        href="https://docs.google.com/document/d/1MHrQfB-ys5-uHVrQmL2XC0oxUJfIWlkP-Tb2SJ_s798/edit?usp=sharing"
+                                        target="_blank"
+                                        >isikuandmete töötlemise põhimõtetes</a
                                     >
                                     toodud informatsiooni ning täiel määral aru
                                     saanud oma õigustest ja kohustustest
@@ -173,9 +178,11 @@
                     <h4>{{ allValues[1] }}</h4>
                     <p>
                         Sinu liikmelisus on vastu võetud ja sind loetakse Eesti
-                        HR Seltsi liikmeks peale seda kui oled saanud
-                        seltsingust tervituskirja. Juhul kui sulle seda nädala
-                        jooksul ei laeku, palume ühendust võtta
+                        HR Seltsi liikmeks peale seda kui oled saanud Seltsilt
+                        tervituskirja. Soovime kõiki uusi liikmeid personaalselt
+                        tervitada, seetõttu palume tervituskirjaga veidi aega.
+                        Juhul kui sulle seda nädala jooksul ei laeku, palume
+                        ühendust võtta
                         <a href="mailto:info@hrselts.ee">info@hrselts.ee</a>
                     </p>
                 </div>
@@ -272,13 +279,14 @@ export default {
         },
         async submitForm() {
             this.loading = true;
+            let date = new Date().toLocaleString("RU-ru").split(",");
             const arr = this.allValues;
             arr.pop();
             const result = await this.$axios.post(
                 "https://api.veresk.club/matikainen",
                 {
                     sheet: "Leht1",
-                    data: arr,
+                    data: [date[0].trim(), date[1].trim(), ...arr],
                 }
             );
             if ((await result) && result.data === "OK") {

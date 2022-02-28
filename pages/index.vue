@@ -54,7 +54,9 @@ img {
 @media (max-width: 480px) {
   .content{
     grid-template-columns: 1fr;
+    padding: var(--container-padding) 0;
     grid-gap: 5em;
+    max-height: unset;
   }
 }
 </style>

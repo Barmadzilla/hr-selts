@@ -62,6 +62,7 @@ export default {
                     {
                         label: "Olen nõus saama HR Seltsilt teavet e-posti teel",
                         message: "Nõusolek teave saamiseks",
+                        name:"access",
                         type: "radio",
                         value: [],
                         chose: ["Jah", "Ei"],
@@ -194,10 +195,11 @@ img {
     object-fit: contain;
     width: 100%;
 }
-@media (max-width:480px) {
-  .content{
-      padding: 0;
-  }
 
+@media (max-width: 480px) {
+    .content {
+        padding: var(--container-padding) 0;
+        max-height: unset;
+    }
 }
 </style>
