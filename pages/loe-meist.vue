@@ -118,6 +118,9 @@
                     seonduv osaliselt kuulub või valdkonnana huvi pakub.
                     Seltsiga liitumine ja liikmelisus on tasuta.
                 </p>
+                <p>
+                    <a href="https://drive.google.com/file/d/15vYN2ZAt4vDXFFswYFD9cRBuKZ5QQyKo/view" target="_blank">Tutvu Eesti HR Seltsi seltsingulepinguga</a>
+                </p>
                 <img :src="require(`~/assets/images/hr-map.png`)" alt="" />
             </div>
         </div>
