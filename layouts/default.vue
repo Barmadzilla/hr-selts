@@ -18,7 +18,7 @@ export default {
 .wrapper {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 1fr fit-content(100%) 1fr;
+    grid-template-rows: 1fr auto 1fr;
     /* grid-template-rows: auto; */
 }
 main{

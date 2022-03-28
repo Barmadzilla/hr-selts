@@ -15,15 +15,21 @@
                 <NuxtLink to="/loe-meist" class="btn">Loe meist</NuxtLink>
             </div>
             <div class="placeholder">
-                <img :src="require(`~/assets/images/hr-map.png`)" alt="" />
+                <img
+                    :src="require(`~/assets/images/hr-map.png`)"
+                    alt="Eesti HR Selts map"
+                />
             </div>
         </div>
+        <PostCardsSlider />
     </ContentSection>
 </template>
 <script>
 import ContentSection from "../components/ContentSection.vue";
+import PostCardsSlider from "../components/PostCardsSlider.vue";
+
 export default {
-    components: { ContentSection },
+    components: { ContentSection, PostCardsSlider },
     name: "IndexPage",
 };
 </script>
@@ -33,7 +39,7 @@ export default {
     display: grid;
     grid-template-columns: 35% 65%;
     align-items: center;
-    max-height: 68vh;
+    padding: 6rem 0;
 }
 .info {
     max-width: 300px;
@@ -52,11 +58,11 @@ img {
     width: 100%;
 }
 @media (max-width: 480px) {
-  .content{
-    grid-template-columns: 1fr;
-    padding: var(--container-padding) 0;
-    grid-gap: 5em;
-    max-height: unset;
-  }
+    .content {
+        grid-template-columns: 1fr;
+        padding: var(--container-padding) 0;
+        grid-gap: 5em;
+        max-height: unset;
+    }
 }
 </style>
