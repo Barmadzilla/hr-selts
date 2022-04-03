@@ -1,12 +1,10 @@
 <template>
-    <transition name="fade" appear mode="out-in">
-        <div class="post-card">
-            <div>
-                <PostCardImage :id="props.featured_media" />
-                <div class="description">
-                    <h2>{{ props.title.rendered }}</h2>
-                    <div v-html="props.excerpt.rendered"></div>
-                </div>
+    <div class="post-card">
+        <PostCardImage :id="props.featured_media" />
+        <div class="content">
+            <div class="description">
+                <h2>{{ props.title.rendered }}</h2>
+                <div v-html="props.excerpt.rendered"></div>
             </div>
             <div class="info">
                 <PrettyDate :date="props.date" />
@@ -15,7 +13,7 @@
                 >
             </div>
         </div>
-    </transition>
+    </div>
 </template>
 
 <script>
@@ -23,7 +21,7 @@ import PostCardImage from "./PostCardImage.vue";
 import PrettyDate from "./PrettyDate.vue";
 import ButtonBlack from "./ButtonBlack.vue";
 export default {
-    name: "PostCard",
+    name: "PostCardLarge",
     props: {
         props: {
             type: Object,
@@ -39,23 +37,26 @@ h2 {
     font-size: 2rem;
 }
 .post-card {
-    background: #eec9db;
+    background: #fff;
     padding: 3rem;
     border-radius: 2rem;
+    display: grid;
+    grid-gap: 4rem;
+    grid-template-columns: 3fr 5fr;
+    margin-bottom: 3rem;
+    transition: all 450ms;
+
+}
+.post-card:hover {
+    box-shadow: 0.3rem 0.4rem 0 #00000025;
+    transform: translate(-0.3rem, -0.4rem);
+}
+.content {
     display: flex;
-    gap: 2rem;
-    flex-direction: column;
     justify-content: space-between;
+    flex-direction: column;
 }
-.post-card:nth-child(2) {
-    background: #ddd7bc;
-}
-.post-card:nth-child(3) {
-    background: #fff;
-}
-.description {
-    margin-top: 2rem;
-}
+
 .info {
     justify-self: end;
     display: flex;
