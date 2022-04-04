@@ -1,7 +1,7 @@
 <template>
     <ContentSection>
         <ArticleContent>
-             <transition name="fade" appear  mode="out-in">
+            <transition name="fade" appear mode="out-in">
                 <Loading v-if="$fetchState.pending" />
                 <div v-else>
                     <h1>{{ post[0].title.rendered }}</h1>
@@ -25,13 +25,12 @@ export default {
     data: () => ({
         post: [],
     }),
-     async fetch() {
+    async fetch() {
         this.post = await fetch(
             `https://api.hrselts.ee/wp-json/wp/v2/posts?slug=${$nuxt.$route.params.slug}&_fields=id,title,content,featured_media,date,categories,author`
         ).then((res) => res.json());
     },
     fetchOnServer: false,
-    
+    fallback: false,
 };
 </script>
-
