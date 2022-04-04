@@ -1,9 +1,8 @@
 <template>
     <ContentSection>
         <ArticleContent>
-            <transition name="fade" appear  mode="out-in">
-                <Loading v-if="$fetchState.pending" />
-                <div v-else>
+            <transition name="fade" appear mode="out-in">
+                <div>
                     <h1>{{ post[0].title.rendered }}</h1>
                     <PostFeaturedImage
                         v-if="this.post[0].featured_media"
@@ -26,15 +25,22 @@ export default {
     data: () => ({
         post: [],
     }),
-    async fetch() {
+    async asyncData({ params }) {
         const res = await fetch(
-            `https://api.hrselts.ee/wp-json/wp/v2/pages?slug=${$nuxt.$route.params.page}&_fields=id,title,content,featured_media,date,categories,author`
+            `https://api.hrselts.ee/wp-json/wp/v2/pages?slug=${params.page}&_fields=id,title,content,featured_media,date,categories,author`
         );
-        this.post = await res.json();
+        const post = await res.json();
+        return { post };
     },
-    fetchOnServer: false,
+
+    // async fetch() {
+    //     const res = await fetch(
+    //         `https://api.hrselts.ee/wp-json/wp/v2/pages?slug=${$nuxt.$route.params.page}&_fields=id,title,content,featured_media,date,categories,author`
+    //     );
+    //     this.post = await res.json();
+    // },
+    // fetchOnServer: false,
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
