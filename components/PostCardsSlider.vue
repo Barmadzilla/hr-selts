@@ -2,7 +2,7 @@
     <section>
         <div class="header">
             <h2>Viimased uudised</h2>
-            <NuxtLink to="/posts" class="btn">Uudised</NuxtLink>
+            <NuxtLink to="/posts" class="btn">Kõik uudised</NuxtLink>
         </div>
         <Loading v-if="$fetchState.pending" />
         <div v-else class="container">
