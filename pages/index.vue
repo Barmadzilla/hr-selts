@@ -16,7 +16,7 @@
             </div>
             <div class="placeholder">
                 <img
-                    :src="require(`~/assets/images/hr-map.png`)"
+                    :src="require(`~/assets/images/hr-map.jpg`)"
                     alt="Eesti HR Selts map"
                 />
             </div>
