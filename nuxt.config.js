@@ -16,7 +16,7 @@ export default {
         ],
         link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
-    target: 'static',
+    // target: 'static',
     // generate: {
     //     fallback: false,
     // },
