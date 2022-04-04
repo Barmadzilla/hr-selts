@@ -24,8 +24,7 @@ export default {
         this.posts = await fetch(
             "https://api.hrselts.ee/wp-json/wp/v2/posts?_fields=id,title,excerpt,date,slug,featured_media&per_page=3"
         ).then((res) => res.json());
-    },
-    fetchOnServer: false,
+    }
 };
 </script>
 

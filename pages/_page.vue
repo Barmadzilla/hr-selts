@@ -22,9 +22,9 @@ import Loading from "../components/Loading.vue";
 export default {
     name: "SinglePage",
     components: { PostFeaturedImage, ArticleContent, Loading },
-    data: () => ({
-        post: [],
-    }),
+    // data: () => ({
+    //     post: [],
+    // }),
     async asyncData({ params }) {
         const res = await fetch(
             `https://api.hrselts.ee/wp-json/wp/v2/pages?slug=${params.page}&_fields=id,title,content,featured_media,date,categories,author`
