@@ -196,10 +196,8 @@
 </template>
 
 <script>
-import ContentSection from "../ContentSection.vue";
 export default {
     name: "BigForm",
-    components: { ContentSection },
     props: {
         fields: {
             type: Array,
