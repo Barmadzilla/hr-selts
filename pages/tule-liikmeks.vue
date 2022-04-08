@@ -3,11 +3,11 @@
         <div class="content">
             <h1>Eesti HR Seltsi liitumise avaldus</h1>
             <p>
-                Eesti HR Seltsiga on oodatud liituma kõik
-                personalijuhtimisest huvituvad entusiastid: nii valdkonnas pikka
-                aega toimetanud kui ka alles esimesi samme astujad, aga ka need
-                kelle töökohustuste hulka personalitööga seonduv osaliselt
-                kuulub või valdkonnana huvi pakub.
+                Eesti HR Seltsiga on oodatud liituma kõik personalijuhtimisest
+                huvituvad entusiastid: nii valdkonnas pikka aega toimetanud kui
+                ka alles esimesi samme astujad, aga ka need kelle töökohustuste
+                hulka personalitööga seonduv osaliselt kuulub või valdkonnana
+                huvi pakub.
             </p>
             <p>Seltsinguga liitumine ja liikmelisus on tasuta.</p>
             <p>
@@ -148,6 +148,10 @@ export default {
 
                     {
                         type: "info",
+                        content:[
+                            'Olen läbi lugenud <a href="https://docs.google.com/document/d/1MHrQfB-ys5-uHVrQmL2XC0oxUJfIWlkP-Tb2SJ_s798/edit?usp=sharing" target="_blank"> isikuandmete töötlemise põhimõtetes</a> toodud informatsiooni ning täiel määral aru saanud oma õigustest ja kohustustest isikuandmete töötlemisel, annan Seltsile nõusoleku põhimõtetes kirjeldatud viisil isikuandmete töötlemiseks.',
+                            ' Kinnitan, et käesolev, minu poolt antud nõusolek isikuandmete töötlemiseks on antud vabatahtlikult. Selts ei ole minu suhtes teostanud mingeid toiminguid sundimaks mind nimetatud nõusolekut isikuandmete töötlemiseks andma.'
+                        ]
                     },
                     {
                         message: "Kinnitus",

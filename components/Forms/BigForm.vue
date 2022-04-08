@@ -2,7 +2,7 @@
     <form>
         <div v-if="!submitted && !loading">
             <h2>{{ title }}</h2>
-            <p>{{ description }}</p>
+            <p v-if="description">{{ description }}</p>
             <div v-if="fields.length > 1" class="page-numbers">
                 <button
                     v-for="(page, i) in fields"
@@ -21,9 +21,22 @@
                             :key="n"
                             :class="{ full: field.span }"
                         >
-                            <label v-if="field.label" :for="field.name">
+                            <label
+                                v-if="field.label && textFields(field.type)"
+                                :for="field.name"
+                                data-test
+                            >
                                 {{ field.label }}
                             </label>
+                            <p
+                                v-if="
+                                    field.type === 'radio' ||
+                                    (field.type === 'checkbox' && field.label)
+                                "
+                                class="radiogroup-label"
+                            >
+                                {{ field.label }}
+                            </p>
                             <input
                                 v-if="textFields(field.type)"
                                 :id="field.name"
@@ -42,7 +55,7 @@
                                 v-if="field.type === 'radio'"
                                 class="radio-container"
                             >
-                                <label
+                                <div
                                     v-for="(item, m) in field.chose"
                                     :key="m"
                                     class="radio"
@@ -58,8 +71,10 @@
                                         :type="field.type"
                                         :placeholder="item.placeholder"
                                     />
-                                    {{ item }}
-                                </label>
+                                    <label :for="field.name + m">
+                                        {{ item }}
+                                    </label>
+                                </div>
                             </div>
                             <div
                                 v-if="field.type === 'checkbox'"
@@ -89,37 +104,11 @@
                                 </div>
                             </div>
                             <div v-if="field.type === 'info'">
-                                <!-- <p
+                                <p
                                     v-for="(p, i) in field.content"
                                     :key="i"
                                     v-html="p"
-                                /> -->
-                                <p>
-                                    Olen läbi lugenud
-                                    <!-- <NuxtLink
-                                        to="/isikuandmete-tootlemise-pohimotted"
-                                        >isikuandmete töötlemise
-                                        põhimõtetes</NuxtLink
-                                    > -->
-                                    <a
-                                        href="https://docs.google.com/document/d/1MHrQfB-ys5-uHVrQmL2XC0oxUJfIWlkP-Tb2SJ_s798/edit?usp=sharing"
-                                        target="_blank"
-                                        >isikuandmete töötlemise põhimõtetes</a
-                                    >
-                                    toodud informatsiooni ning täiel määral aru
-                                    saanud oma õigustest ja kohustustest
-                                    isikuandmete töötlemisel, annan Seltsile
-                                    nõusoleku põhimõtetes kirjeldatud viisil
-                                    isikuandmete töötlemiseks.
-                                </p>
-                                <p>
-                                    Kinnitan, et käesolev, minu poolt antud
-                                    nõusolek isikuandmete töötlemiseks on antud
-                                    vabatahtlikult. Selts ei ole minu suhtes
-                                    teostanud mingeid toiminguid sundimaks mind
-                                    nimetatud nõusolekut isikuandmete
-                                    töötlemiseks andma.
-                                </p>
+                                />
                             </div>
                             <div
                                 v-if="field.type === 'separator'"
@@ -402,8 +391,10 @@ nav {
 nav.first {
     justify-content: flex-end;
 }
-label {
+label,
+.radiogroup-label {
     font-size: 1.8em;
+    margin-bottom: 0;
     padding-bottom: 2rem;
     display: inline-block;
 }
