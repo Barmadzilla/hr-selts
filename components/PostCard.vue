@@ -1,6 +1,6 @@
 <template>
     <transition name="fade" appear mode="out-in">
-        <div class="post-card">
+        <div class="post-card" :class="{ white: allWhite }">
             <div>
                 <PostCardImage :id="props.featured_media" />
                 <div class="description">
@@ -29,6 +29,10 @@ export default {
             type: Object,
             default: null,
         },
+        allWhite: {
+            type: Boolean,
+            default: false,
+        },
     },
     components: { PostCardImage, PrettyDate, ButtonBlack },
 };
@@ -51,6 +55,9 @@ h2 {
     background: #ddd7bc;
 }
 .post-card:nth-child(3) {
+    background: #fff;
+}
+.post-card.white {
     background: #fff;
 }
 .description {

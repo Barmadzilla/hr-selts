@@ -16,6 +16,7 @@
                         v-for="(post, i) in posts"
                         :key="i"
                         :props="post"
+                        :allWhite="true"
                         class="card"
                     />
                 </div>

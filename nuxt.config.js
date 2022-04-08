@@ -16,6 +16,12 @@ export default {
         ],
         link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
+    googleAnalytics: {
+        id: "G-JR5SVW5ER6",
+        autoTracking: {
+            screenview: true,
+        },
+    },
     // target: 'static',
     // generate: {
     //     fallback: false,
@@ -26,6 +32,7 @@ export default {
         "@/assets/css/global.css",
         "@/assets/css/colors.css",
         "@/assets/css/animations.css",
+        "@/assets/css/wp.css",
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,7 +42,7 @@ export default {
     components: true,
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: [],
+    buildModules: ["@nuxtjs/google-analytics"],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: ["@nuxtjs/axios"],

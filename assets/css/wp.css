@@ -1,0 +1,17 @@
+.wp-block-button a{
+    background: black;
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1;
+    border: solid 0.2rem black;
+    transition: all 150ms;
+}
+.wp-block-button a:hover {
+    background: transparent;
+    color: black;
+}
