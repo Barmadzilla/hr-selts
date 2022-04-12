@@ -15,13 +15,18 @@ export default {
             { name: "format-detection", content: "telephone=no" },
         ],
         link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+        __dangerouslyDisableSanitizers: ['script'],
+        script: [
+            {
+                src: "https://www.googletagmanager.com/gtag/js?id=G-JR5SVW5ER6",
+                async: true,
+            },
+            {
+                innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JR5SVW5ER6')`,
+            }
+        ],
     },
-    googleAnalytics: {
-        id: "G-JR5SVW5ER6",
-        autoTracking: {
-            screenview: true,
-        },
-    },
+
     // target: 'static',
     // generate: {
     //     fallback: false,
