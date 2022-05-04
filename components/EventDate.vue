@@ -1,5 +1,5 @@
 <template>
-    <p class="date">{{ pretty }}</p>
+    <p class="date">{{ eventDate }}</p>
 </template>
 
 <script>
@@ -9,19 +9,25 @@ export default {
     data: () => ({
         pretty: null,
     }),
-    mounted() {
-        const dateObj = new Date(
-            this.date["event_date"].slice(0, 4) +
-                "-" +
-                this.date["event_date"].slice(4, 6) +
-                "-" +
-                this.date["event_date"].slice(6, 8)
-        );
-        this.pretty = dateObj.toLocaleString("et", {
-            month: "long",
-            day: "2-digit",
-            year: "numeric",
-        });
+    computed: {
+        eventDate() {
+            const dateObj =
+                !!this.date["event_date"] &&
+                new Date(
+                    this.date["event_date"].slice(0, 4) +
+                        "-" +
+                        this.date["event_date"].slice(4, 6) +
+                        "-" +
+                        this.date["event_date"].slice(6, 8)
+                );
+            return dateObj
+                ? dateObj.toLocaleString("et", {
+                      month: "long",
+                      day: "2-digit",
+                      year: "numeric",
+                  })
+                : "";
+        },
     },
 };
 </script>

@@ -7,10 +7,9 @@
                 <div v-html="props.excerpt.rendered"></div>
             </div>
             <div class="info">
-                <EventDate :date="props.acf"/>
+                <EventDate :date="props.acf" />
                 <ButtonBlack :to="'posts/' + props.slug"
-                    >Loe rohkem</ButtonBlack
-                >
+                    >Loe rohkem</ButtonBlack>
             </div>
         </div>
     </div>
@@ -46,7 +45,6 @@ h2 {
     grid-template-columns: 3fr 5fr;
     margin-bottom: 3rem;
     transition: all 450ms;
-
 }
 .post-card:hover {
     box-shadow: 0.3rem 0.4rem 0 #00000025;
