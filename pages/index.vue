@@ -22,14 +22,17 @@
             </div>
         </div>
         <PostCardsSlider />
+        <EventCardsSlider/>
+        
     </ContentSection>
 </template>
 <script>
 import ContentSection from "../components/ContentSection.vue";
 import PostCardsSlider from "../components/PostCardsSlider.vue";
+import EventCardsSlider from "../components/EventCardsSlider.vue";
 
 export default {
-    components: { ContentSection, PostCardsSlider },
+    components: { ContentSection, PostCardsSlider, EventCardsSlider },
     name: "IndexPage",
 };
 </script>

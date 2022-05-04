@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import PostCardLarge from "../../components/PostCardLarge.vue";
 import Loading from "../../components/Loading.vue";
+import PostCardLarge from "../../components/PostCardLarge";
 export default {
     name: "PostsArchive",
     components: { PostCardLarge, Loading },
