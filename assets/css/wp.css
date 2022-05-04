@@ -1,5 +1,5 @@
 .content {
-    --c-main:var(--text-link)
+    --c-main: var(--text-link);
 }
 .wp-block-button a {
     background: black;
@@ -103,28 +103,37 @@
     max-height: 300px;
 }
 
-.content table{
+.content table {
     width: 100%;
     border: 1px solid var(--c-main);
-    
 }
 .content table td,
 .content table tr {
-    padding: .2rem .5rem;
+    padding: 0.2rem 0.5rem;
     font-size: 1.4rem;
 }
-.content table td{
+.content table td {
     border: 1px solid #00000010;
 }
-.content .has-small-font-size *{
+.content .has-small-font-size * {
     font-size: 1.2rem;
 }
-.content .has-medium-font-size *{
+.content .has-medium-font-size * {
     font-size: 1.8rem;
 }
-.content .has-large-font-size *{
+.content .has-large-font-size * {
     font-size: 2.1rem;
 }
-.content .has-x-large-font-size *{
+.content .has-x-large-font-size * {
     font-size: 2.6rem;
+}
+.content blockquote {
+    border-left: 0.4rem solid var(--c-main);
+    margin-left: 1rem;
+    padding-left: 2em;
+    position: relative;
+}
+
+.content blockquote cite {
+    font-size: 1.2rem;
 }
