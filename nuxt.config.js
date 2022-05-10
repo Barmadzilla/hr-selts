@@ -53,14 +53,14 @@ export default {
     modules: ["@nuxtjs/axios", "@nuxtjs/sitemap"],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    // build: {},
 
     sitemap: {
         hostname: "https://hrselts.ee",
         defaults: {
-            changefreq: 'weekly',
+            changefreq: "weekly",
             priority: 1,
-            lastmod: new Date()
-          }
+            lastmod: new Date(),
+        },
     },
 };
