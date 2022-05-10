@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap");
 
 :root {
-    --section-padding: 7.5em;
+    --section-padding: 7.5rem;
     --container-padding: 6rem;
-    --space-between-p: 1.4em;
-    --footer-padding: 4.5em 0;
-    --header-padding: 4.5em 0 0;
+    --space-between-p: 1.4rem;
+    --footer-padding: 4.5rem 0;
+    --header-padding: 4.5rem 0 0;
 }
 body {
     background: #f3eecf;
@@ -13,7 +13,7 @@ body {
 * {
     padding: 0;
     margin: 0;
-    font-size: 10px;
+    font-size: clamp( 8px,.85vw, 10px);
     font-family: "Roboto", sans-serif;
     line-height: 1.34;
 }
@@ -38,12 +38,15 @@ p:last-child,
 p:only-child {
     margin-bottom: 0;
 }
-li,table,td,tr {
+li,
+table,
+td,
+tr {
     font-size: 1.6rem;
 }
 ul,
 ol {
-    padding-left: 2.3em;
+    padding-left: 2.3rem;
     margin-bottom: var(--space-between-p);
 }
 section,
@@ -53,13 +56,13 @@ nav {
     box-sizing: border-box;
 }
 h1 {
-    font-size: 4.5em;
+    font-size: 4.5rem;
 }
 h2 {
-    font-size: 3.5em;
+    font-size: 3.5rem;
 }
 h3 {
-    font-size: 2em;
+    font-size: 2rem;
 }
 h4 {
     font-size: 2rem;
