@@ -30,14 +30,18 @@ export default {
     overflow: hidden;
     border-radius: 1rem;
     display: flex;
-    width: 100%;
-    height: 25rem;
+    height: 0;
+    padding-top: 64%;
+    position: relative;
     background: #00000015;
 }
 .placeholder img {
     margin: 0;
     padding: 0;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: relative;
     width: 100%;
     height: 100%;

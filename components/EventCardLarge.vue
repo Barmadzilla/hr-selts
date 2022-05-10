@@ -42,7 +42,7 @@ h2 {
     border-radius: 2rem;
     display: grid;
     grid-gap: 4rem;
-    grid-template-columns: 3fr 5fr;
+    grid-template-columns: 1fr 1fr;
     margin-bottom: 3rem;
     transition: all 450ms;
 }
