@@ -15,7 +15,7 @@ export default {
             { name: "format-detection", content: "telephone=no" },
         ],
         link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
-        __dangerouslyDisableSanitizers: ['script'],
+        __dangerouslyDisableSanitizers: ["script"],
         script: [
             {
                 src: "https://www.googletagmanager.com/gtag/js?id=G-JR5SVW5ER6",
@@ -23,7 +23,7 @@ export default {
             },
             {
                 innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JR5SVW5ER6')`,
-            }
+            },
         ],
     },
 
@@ -50,8 +50,17 @@ export default {
     buildModules: ["@nuxtjs/google-analytics"],
 
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: ["@nuxtjs/axios"],
+    modules: ["@nuxtjs/axios", "@nuxtjs/sitemap"],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
+
+    sitemap: {
+        hostname: "https://hrselts.ee",
+        defaults: {
+            changefreq: 'weekly',
+            priority: 1,
+            lastmod: new Date()
+          }
+    },
 };
