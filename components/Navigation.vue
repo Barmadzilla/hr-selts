@@ -8,7 +8,7 @@
         </NuxtLink>
         <div class="menu">
             <div v-for="(item, i) in menu" :key="i">
-                <NuxtLink v-if="!item.sub.length" :to="item.to" class="item">
+                <NuxtLink v-if="!item.sub.length" :to="item.to" class="item" :class="{tule: item.name==='Tule liikmeks'}">
                     {{ item.name }}
                 </NuxtLink>
 
@@ -114,6 +114,14 @@ nav {
     gap: 2em;
 }
 .menu .item {
+    color: #797979;
+    text-decoration: none;
+    font-size: 2.2em;
+    /* margin-left: 2em; */
+    transition: all 150ms;
+    position: relative;
+}
+.menu .item.tule {
     color: var(--text-link);
     text-decoration: none;
     font-size: 2.2em;
@@ -123,7 +131,7 @@ nav {
     position: relative;
 }
 .item:hover {
-    text-decoration: underline;
+    color: black;
 }
 .item.nuxt-link-active  {
 

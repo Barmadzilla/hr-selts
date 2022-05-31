@@ -34,6 +34,7 @@ export default {
     data: () => ({
         posts: [],
         windowWidth: "",
+        categories: [],
     }),
     methods: {
         getWidth() {
@@ -57,6 +58,9 @@ export default {
     async fetch() {
         this.posts = await fetch(
             "https://api.hrselts.ee/wp-json/wp/v2/posts?_fields=id,title,excerpt,date,slug,featured_media&per_page=50"
+        ).then((res) => res.json());
+        this.categories = await fetch(
+            "https://api.hrselts.ee/wp-json/wp/v2/categories?_fields=id,name,slug,&per_page=50"
         ).then((res) => res.json());
     },
     fetchOnServer: false,

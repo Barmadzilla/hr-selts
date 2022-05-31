@@ -1,21 +1,17 @@
 <template>
-    <transition name="fade" appear mode="out-in">
-        <div class="post-card" :class="{ white: allWhite }">
-            <div>
-                <PostCardImage :id="props.featured_media" />
-                <div class="description">
-                    <h2>{{ props.title.rendered }}</h2>
-                    <div v-html="props.excerpt.rendered"></div>
-                </div>
-            </div>
-            <div class="info">
-                <PrettyDate :date="props.date" />
-                <ButtonBlack :to="'posts/' + props.slug"
-                    >Loe rohkem</ButtonBlack
-                >
+    <div class="post-card" :class="{ white: allWhite }">
+        <div>
+            <PostCardImage :id="props.featured_media" />
+            <div class="description">
+                <h2>{{ props.title.rendered }}</h2>
+                <div v-html="props.excerpt.rendered"></div>
             </div>
         </div>
-    </transition>
+        <div class="info">
+            <PrettyDate :date="props.date" />
+            <ButtonBlack :to="'posts/' + props.slug">Loe rohkem</ButtonBlack>
+        </div>
+    </div>
 </template>
 
 <script>
