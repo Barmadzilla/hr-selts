@@ -16,16 +16,16 @@ export default {
             { name: "format-detection", content: "telephone=no" },
         ],
         link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
-        __dangerouslyDisableSanitizers: ["script"],
-        script: [
-            {
-                src: "https://www.googletagmanager.com/gtag/js?id=G-JR5SVW5ER6",
-                async: true,
-            },
-            {
-                innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JR5SVW5ER6')`,
-            },
-        ],
+        // __dangerouslyDisableSanitizers: ["script"],
+        // script: [
+        //     {
+        //         src: "https://www.googletagmanager.com/gtag/js?id=G-JR5SVW5ER6",
+        //         async: true,
+        //     },
+        //     {
+        //         innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JR5SVW5ER6')`,
+        //     },
+        // ],
     },
 
     // target: 'static',
@@ -51,7 +51,16 @@ export default {
     buildModules: ["@nuxtjs/google-analytics"],
 
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: ["@nuxtjs/axios", "@nuxtjs/sitemap"],
+    modules: [
+        "@nuxtjs/axios",
+        "@nuxtjs/sitemap",
+        [
+            "@nuxtjs/google-gtag",
+            {
+                id: "G-JR5SVW5ER6",
+            },
+        ],
+    ],
     serverMiddleware: ["~/middleware/postsRedirects.js"],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
