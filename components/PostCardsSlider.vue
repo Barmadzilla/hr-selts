@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="header">
-            <h2>Viimased uudised</h2>
+            <h2>Viimased postitused</h2>
             <NuxtLink to="/postitused/kategooriad/uudised" class="btn">Kõik uudised</NuxtLink>
         </div>
         <Loading v-if="$fetchState.pending" />
