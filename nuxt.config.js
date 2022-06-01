@@ -52,6 +52,7 @@ export default {
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: ["@nuxtjs/axios", "@nuxtjs/sitemap"],
+    serverMiddleware: ["~/middleware/postsRedirects.js"],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     // build: {},
@@ -73,7 +74,7 @@ export default {
             let posts = await axios.get(
                 "https://api.hrselts.ee/wp-json/wp/v2/posts?_fields=slug&per_page=100"
             );
-            posts = posts.data.map(item => `/postitused/${item.slug}`)
+            posts = posts.data.map((item) => `/postitused/${item.slug}`);
 
             return [...categories, ...posts];
         },
