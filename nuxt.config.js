@@ -1,3 +1,4 @@
+const axios = require("axios");
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -61,6 +62,20 @@ export default {
             changefreq: "weekly",
             priority: 1,
             lastmod: new Date(),
+        },
+        routes: async () => {
+            const { data } = await axios.get(
+                "https://api.hrselts.ee/wp-json/wp/v2/categories?_fields=id,name,slug,&per_page=50"
+            );
+            const categories = data
+                .map((item) => `/postitused/kategooriad/${item.slug}`)
+                .filter((item) => !item.includes("uncategorized"));
+            let posts = await axios.get(
+                "https://api.hrselts.ee/wp-json/wp/v2/posts?_fields=slug&per_page=100"
+            );
+            posts = posts.data.map(item => `/postitused/${item.slug}`)
+
+            return [...categories, ...posts];
         },
     },
 };

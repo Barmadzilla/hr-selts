@@ -1,7 +1,7 @@
 <template>
     <ContentSection>
         <div class="content">
-            <h2>Oluline</h2>
+            <h2>Kõik postitused</h2>
             <transition
                 name="fade"
                 appear
