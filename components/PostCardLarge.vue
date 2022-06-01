@@ -8,7 +8,7 @@
             </div>
             <div class="info">
                 <PrettyDate :date="props.date" />
-                <ButtonBlack :to="'posts/' + props.slug"
+                <ButtonBlack :to="'postitused/' + props.slug"
                     >Loe rohkem</ButtonBlack
                 >
             </div>
