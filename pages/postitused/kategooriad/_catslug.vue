@@ -1,7 +1,7 @@
 <template>
     <ContentSection>
         <div class="content">
-            <h2>Kõik postitused</h2>
+            <!-- <h2>Kõik postitused</h2>
             <transition
                 name="fade"
                 appear
@@ -35,7 +35,7 @@
                     class="dot"
                     :class="{ active: current === n - 1 }"
                 />
-            </div>
+            </div> -->
             <transition name="fade" appear mode="out-in">
                 <div>
                     <h1>{{ category.name }}</h1>
