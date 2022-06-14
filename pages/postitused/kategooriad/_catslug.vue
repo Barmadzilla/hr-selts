@@ -1,7 +1,30 @@
 <template>
     <ContentSection>
         <div class="content">
-            <!-- <h2>Kõik postitused</h2>
+             <transition name="fade" appear mode="out-in">
+                <div>
+                    <h1>{{ category.name }}</h1>
+                    <div v-if="windowWidth > 500">
+                        <div v-for="(post, i) in posts" :key="i">
+                            <PostCardLarge
+                                v-if="category.slug !== 'sundmused'"
+                                :props="post"
+                            />
+                            <EventCardLarge v-else :props="post" />
+                        </div>
+                    </div>
+                    <div v-if="windowWidth && windowWidth < 500">
+                        <PostCard
+                            v-for="(post, i) in posts"
+                            :key="i"
+                            :props="post"
+                            :allWhite="true"
+                            class="card"
+                        />
+                    </div>
+                </div>
+            </transition>
+            <h2>Kõik postitused</h2>
             <transition
                 name="fade"
                 appear
@@ -29,36 +52,14 @@
 
             <div class="dotContainer">
                 <div
-                    v-for="n in total / 3"
+                    v-for="n in Math.round(total / 3) "
                     :key="n"
                     @click="setPage(n)"
                     class="dot"
                     :class="{ active: current === n - 1 }"
                 />
-            </div> -->
-            <transition name="fade" appear mode="out-in">
-                <div>
-                    <h1>{{ category.name }}</h1>
-                    <div v-if="windowWidth > 500">
-                        <div v-for="(post, i) in posts" :key="i">
-                            <PostCardLarge
-                                v-if="category.slug !== 'sundmused'"
-                                :props="post"
-                            />
-                            <EventCardLarge v-else :props="post" />
-                        </div>
-                    </div>
-                    <div v-if="windowWidth && windowWidth < 500">
-                        <PostCard
-                            v-for="(post, i) in posts"
-                            :key="i"
-                            :props="post"
-                            :allWhite="true"
-                            class="card"
-                        />
-                    </div>
-                </div>
-            </transition>
+            </div>
+           
         </div>
     </ContentSection>
 </template>
