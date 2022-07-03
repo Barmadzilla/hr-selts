@@ -1,6 +1,6 @@
 <template>
     <Loading v-if="$fetchState.pending" />
-    <div v-else class="container">
+    <div v-else>
         <EventCardLarge v-for="(post, i) in posts" :key="i" :props="post" />
     </div>
 </template>
