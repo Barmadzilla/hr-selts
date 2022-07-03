@@ -6,9 +6,32 @@
                 alt="HR Selts Logo"
             />
         </NuxtLink>
-        <div class="menu">
+        <div class="burger" v-if="!mobile" @click="mobile = true">
+            <span />
+            <span />
+            <span />
+        </div>
+
+        <div
+            v-if="mobile || windowWidth > 500"
+            class="menu"
+            @click="mobile = false"
+        >
+            <div class="close" />
+            <NuxtLink to="/">
+                <img
+                    class="logo"
+                    :src="require('~/assets/images/logo.svg')"
+                    alt="HR Selts Logo"
+                />
+            </NuxtLink>
             <div v-for="(item, i) in menu" :key="i">
-                <NuxtLink v-if="!item.sub.length" :to="item.to" class="item" :class="{tule: item.name==='Tule liikmeks'}">
+                <NuxtLink
+                    v-if="!item.sub.length"
+                    :to="item.to"
+                    class="item"
+                    :class="{ tule: item.name === 'Tule liikmeks' }"
+                >
                     {{ item.name }}
                 </NuxtLink>
 
@@ -44,6 +67,8 @@ export default {
     data() {
         return {
             open: false,
+            mobile: false,
+            windowWidth: "",
             menu: [
                 // { name: 'О нас', to: 'about' },
                 // { name: "Родителям", to: "for-parents" },
@@ -92,6 +117,9 @@ export default {
                     }
             );
         },
+        getWidth() {
+            this.windowWidth = process.client && window.innerWidth;
+        },
     },
     async fetch() {
         const res = await fetch(
@@ -99,6 +127,17 @@ export default {
         );
         const data = await res.json();
         this.menu = this.mapItem(data).filter((item) => !Number(item.parent));
+    },
+    async mounted() {
+        // this.posts = await this.getPosts(this.category[0]);
+
+        this.$nextTick(() => {
+            process.client && window.addEventListener("resize", this.getWidth);
+        });
+        this.getWidth();
+    },
+    beforeDestroy() {
+        process.client && window.removeEventListener("resize", this.onResize);
     },
 };
 </script>
@@ -114,7 +153,7 @@ nav {
     gap: 2em;
 }
 .menu .item {
-    color: #797979;
+    color: #000000;
     text-decoration: none;
     font-size: 2.2em;
     /* margin-left: 2em; */
@@ -133,9 +172,18 @@ nav {
 .item:hover {
     color: black;
 }
-.item.nuxt-link-active  {
-
-    color: black;
+.item.nuxt-link-active {
+    position: relative;
+}
+.item.nuxt-link-active:after {
+    position: absolute;
+    bottom: -7rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    content: "";
+    height: 4rem;
+    width: 4rem;
+    background: #f3eecf;
 }
 .sub-container {
     position: relative;
@@ -175,5 +223,91 @@ nav {
 .fade-leave-to {
     opacity: 0;
     transform: translateY(-1em);
+}
+.logo {
+    display: none;
+}
+@media (max-width: 480px) {
+    .menu {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background: #ffffff50;
+        backdrop-filter: blur(1.3rem);
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        box-sizing: border-box;
+        padding: 3.5rem 8rem;
+    }
+    .menu .item {
+        font-size: 3rem;
+        background: #fff;
+        box-shadow: 0.4rem 0.4rem 1rem #00000030;
+        width: 100%;
+        display: block;
+        padding: 1rem 3rem;
+        border-radius: 1rem;
+        box-sizing: border-box;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    .menu .item.tule {
+        font-size: 3rem;
+    }
+    .logo {
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 2rem;
+        width: 34vw;
+    }
+    .close {
+        position: absolute;
+        right: 3rem;
+        top: 3rem;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+    .close::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background: #000;
+        height: 100%;
+        top: 0;
+        left: calc(50% - 0.1px);
+    }
+    .close::before {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: #000;
+        top: calc(50% - 1px);
+    }
+    .burger {
+        height: 3.5rem;
+        width: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .burger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #000;
+    }
+    .menu .item.nuxt-link-active{
+        background: var(--text-link);
+        color:white
+    }
+    .menu .item.nuxt-link-active:after {
+        display: none;
+    }
 }
 </style>

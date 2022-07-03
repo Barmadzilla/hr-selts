@@ -8,9 +8,24 @@
     </div>
 </template>
 <script>
-
 export default {
-    name: "LayoutMain"
+    name: "LayoutMain",
+    methods: {
+        getWidth() {
+             this.$store.commit("add", process.client && window.innerWidth); 
+        },
+    },
+    async mounted() {
+        // this.posts = await this.getPosts(this.category[0]);
+
+        this.$nextTick(() => {
+            process.client && window.addEventListener("resize", this.getWidth);
+        });
+        this.getWidth();
+    },
+    beforeDestroy() {
+        process.client && window.removeEventListener("resize", this.onResize);
+    },
 };
 </script>
 
@@ -21,8 +36,8 @@ export default {
     grid-template-rows: 1fr auto 1fr;
     /* grid-template-rows: auto; */
 }
-main{
-  align-self: stretch;
+main {
+    align-self: stretch;
 }
 .page-enter-active,
 .page-leave-active {

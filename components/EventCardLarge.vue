@@ -9,7 +9,8 @@
             <div class="info">
                 <EventDate :date="props.acf" />
                 <ButtonBlack :to="'postitused/' + props.slug"
-                    >Loe rohkem</ButtonBlack>
+                    >Loe rohkem</ButtonBlack
+                >
             </div>
         </div>
     </div>
@@ -66,5 +67,10 @@ h2 {
 }
 .info p {
     margin-bottom: 0;
+}
+@media (max-width: 480px) {
+    .post-card {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 </style>

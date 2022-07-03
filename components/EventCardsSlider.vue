@@ -1,14 +1,8 @@
 <template>
-    <section>
-        <div class="header">
-            <h2>Sündmused</h2>
-            <NuxtLink to="/postitused/kategooriad/sundmused" class="btn">Kõik sündmused</NuxtLink>
-        </div>
-        <Loading v-if="$fetchState.pending" />
-        <div v-else class="container">
-            <EventCardLarge v-for="(post, i) in posts" :key="i" :props="post" />
-        </div>
-    </section>
+    <Loading v-if="$fetchState.pending" />
+    <div v-else class="container">
+        <EventCardLarge v-for="(post, i) in posts" :key="i" :props="post" />
+    </div>
 </template>
 
 <script>
@@ -34,15 +28,6 @@ export default {
     grid-template-columns: 1fr;
     grid-gap: 3rem;
     justify-content: center;
-}
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4rem;
-}
-.header h2 {
-    margin-bottom: 0;
 }
 @media (max-width: 480px) {
     .container {

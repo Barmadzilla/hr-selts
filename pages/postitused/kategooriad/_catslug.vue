@@ -1,7 +1,7 @@
 <template>
     <ContentSection>
         <div class="content">
-             <transition name="fade" appear mode="out-in">
+            <transition name="fade" appear mode="out-in">
                 <div>
                     <h1>{{ category.name }}</h1>
                     <div v-if="windowWidth > 500">
@@ -14,52 +14,20 @@
                         </div>
                     </div>
                     <div v-if="windowWidth && windowWidth < 500">
-                        <PostCard
-                            v-for="(post, i) in posts"
-                            :key="i"
-                            :props="post"
-                            :allWhite="true"
-                            class="card"
-                        />
+                        <div v-for="(post, i) in posts" :key="i">
+                            <PostCard
+                                v-if="category.slug !== 'sundmused'"
+                                :props="post"
+                                :allWhite="true"
+                                class="card"
+                            />
+                            <EventCardLarge v-else :props="post" />
+                        </div>
                     </div>
                 </div>
             </transition>
-            <h2>Kõik postitused</h2>
-            <transition
-                name="fade"
-                appear
-                mode="out-in"
-                @after-leave="nextTop(current)"
-                ><div v-show="show" class="topWrap">
-                    <div class="top">
-                        <PostCard v-for="tp in top" :key="tp.id" :props="tp" />
-                    </div>
-                    <div class="pagination" :class="{ first: current === 0 }">
-                        <div
-                            v-if="current > 0"
-                            @click="decrease()"
-                            class="prev"
-                        />
-
-                        <div
-                            v-if="current < total / 3 - 1"
-                            @click="increase()"
-                            class="next"
-                        />
-                    </div>
-                </div>
-            </transition>
-
-            <div class="dotContainer">
-                <div
-                    v-for="n in Math.round(total / 3) "
-                    :key="n"
-                    @click="setPage(n)"
-                    class="dot"
-                    :class="{ active: current === n - 1 }"
-                />
-            </div>
-           
+            <TitleAndButton title="Kõik postitused" />
+            <PostsCardsSlider />
         </div>
     </ContentSection>
 </template>
@@ -70,39 +38,12 @@ export default {
     data: () => ({
         posts: [],
         windowWidth: "",
-        current: 0,
         show: true,
     }),
+
     methods: {
-        async getPosts(offset) {
-            return await fetch(
-                `https://api.hrselts.ee/wp-json/wp/v2/posts?&_fields=id,title,excerpt,date,slug,acf,featured_media&per_page=3&offset=${offset}`
-            ).then((res) => res.json());
-        },
         getWidth() {
             this.windowWidth = process.client && window.innerWidth;
-        },
-        async nextTop(page) {
-            this.show = true;
-            this.top = await this.getPosts(page * 3);
-        },
-        increase() {
-            this.current++;
-            this.show = false;
-        },
-        decrease() {
-            this.current--;
-            this.show = false;
-        },
-        setPage(n) {
-            this.current = n - 1;
-            this.show = false;
-        },
-    },
-
-    watch: {
-        windowHeight(newHeight, oldHeight) {
-            this.windowWidth = `it changed to ${newHeight} from ${oldHeight}`;
         },
     },
 
@@ -118,13 +59,7 @@ export default {
             const posts = await fetch(
                 `https://api.hrselts.ee/wp-json/wp/v2/posts?categories=${category.id}&_fields=id,title,excerpt,date,slug,featured_media,acf`
             ).then((res) => res.json());
-            const top = await fetch(
-                `https://api.hrselts.ee/wp-json/wp/v2/posts?_fields=id,title,excerpt,date,slug,featured_media,sticky&per_page=3`
-            ).then((res) => {
-                total = res.headers.get("X-WP-Total");
-                return res.json();
-            });
-            return { slug, category, posts, top, total };
+            return { slug, category, posts, total };
         } else {
             return error({ statusCode: 404, message: "Post not found" });
         }
@@ -240,10 +175,33 @@ export default {
 .dot.active::after {
     border-color: #8a8a8a;
 }
+h2 {
+    margin-top: 7.5rem;
+}
 @media (max-width: 480px) {
     .content {
         min-width: unset;
         width: 100%;
+    }
+    .top {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    /* .pagination {
+        justify-content: space-between;
+        position: block;
+        width: 100%;
+    } */
+    /* .topWrap {
+        /* align-items: flex-end; */
+
+    .next {
+        /* transform: unset; */
+        background: #f3eecf url("~/assets/images/arr.svg") no-repeat 2.4rem
+            center / 25%;
+    }
+    .prev {
+        background: #f3eecf url("~/assets/images/arr.svg") no-repeat 2.4rem
+            center / 25%;
     }
 }
 </style>
