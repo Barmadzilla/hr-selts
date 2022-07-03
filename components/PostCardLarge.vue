@@ -47,10 +47,10 @@ h2 {
     transition: all 450ms;
 
 }
-.post-card:hover {
+/* .post-card:hover {
     box-shadow: 0.3rem 0.4rem 0 #00000025;
-    transform: translate(-0.3rem, -0.4rem);
-}
+    transform: translate(-0.3rem, -0.4rem); */
+/* } */
 .content {
     display: flex;
     justify-content: space-between;
