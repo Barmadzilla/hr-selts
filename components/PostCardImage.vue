@@ -28,7 +28,7 @@ export default {
 <style scoped>
 .placeholder {
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: 1.8rem;
     display: flex;
     height: 0;
     padding-top: 64%;
