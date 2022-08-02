@@ -1,24 +1,21 @@
 <template>
     <div class="member">
-        <div class="logo">
-            <img
-                v-if="logo"
-                :src="require('~/assets/expo/members/' + logo + '.png')"
-                :alt="title"
-            />
+        <div class="logo" :class="{ hide: logo === 0 }">
+            <PostFeaturedImage :id="logo" size="medium" />
         </div>
         <div class="info">
             <h3>{{ title }}</h3>
-            <p v-html="info" />
-            <a :href="link">{{ link }}</a>
+            <div v-html="info" />
         </div>
     </div>
 </template>
 
 <script>
+import PostFeaturedImage from "../PostFeaturedImage.vue";
 export default {
     name: "ExpoMember",
     props: ["title", "logo", "info", "link"],
+    components: { PostFeaturedImage },
 };
 </script>
 
@@ -31,8 +28,9 @@ export default {
     border-radius: 2rem;
     padding: 4rem;
     margin-bottom: 4rem;
+    box-sizing: border-box;
 }
-.member:nth-child(even){
+.member:nth-child(even) {
     flex-direction: row-reverse;
 }
 img {
@@ -46,7 +44,32 @@ h3 {
     width: 30%;
     flex-shrink: 0;
 }
-a {
-    font-size: 1.2rem;
+.logo.hide {
+    display: none;
+}
+.member .info p {
+    font-size: 1em;
+}
+.member .info p a {
+    font-size: 0.8em !important;
+}
+@media (max-width: 480px) {
+    /* .member:nth-child(even) {
+        flex-direction: unset;
+    } */
+    .member,
+    .member:nth-child(even) {
+        flex-direction: column;
+    }
+    .member .info p {
+        /* hyphens: auto; */
+        word-wrap: break-word;
+    }
+    .logo {
+        width: 100%;
+    }
+    .placeholder {
+        margin-bottom: 0;
+    }
 }
 </style>

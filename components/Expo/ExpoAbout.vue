@@ -52,6 +52,7 @@
             HR EXPO-t toetab Fontes, Eesti kogenuim ettevõte talendikapitali
             juhtimise ja talentide nõustamise valdkonnas!
         </p>
+        <ExpoPartners />
     </div>
 </template>
 
