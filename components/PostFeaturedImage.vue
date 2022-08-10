@@ -1,6 +1,6 @@
 <template>
     <div class="placeholder">
-        <img v-if="url" :src="url" alt="" />s
+        <img v-if="url" :src="url" alt="" />
     </div>
 </template>
 
